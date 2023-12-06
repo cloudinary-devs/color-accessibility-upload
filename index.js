@@ -12,7 +12,18 @@ const uploadImage = async (imagePath) => {
       unique_filename: false,
       overwrite: true,
       accessibility_analysis: true,
-      eval: 'if (resource_info.accessibility_analysis.colorblind_accessibility_analysis.distinct_edges < 0.8){upload_options["tags"] = "distinct_edges_issue";} if (resource_info.accessibility_analysis.colorblind_accessibility_analysis.distinct_colors < 0.8) {if (upload_options["tags"]){upload_options["tags"] += ",distinct_colors_issue";}else{upload_options["tags"] = "distinct_colors_issue";}}'
+      eval: 
+      `if (resource_info.accessibility_analysis.colorblind_accessibility_analysis.distinct_edges < 0.8){
+        upload_options["tags"] = "distinct_edges_issue";
+      } 
+      if (resource_info.accessibility_analysis.colorblind_accessibility_analysis.distinct_colors < 0.8) {
+        if (upload_options["tags"]){
+          upload_options["tags"] += ",distinct_colors_issue";
+        }
+        else{
+          upload_options["tags"] = "distinct_colors_issue";
+        }
+      }`
     };
 
     try {
